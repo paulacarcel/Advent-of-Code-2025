@@ -1,0 +1,27 @@
+Dia 2: 
+
+En el día 2 se pide calcular la suma de todos los números que son “inválidos” según una regla declarada, la cual establece que un número es inválido si está formado por la repetición de un patrón en sus dígitos (por ejemplo, 121212 o 3333). 
+
+Para realizar el código seguimos el siguiente esquema: 
+
+Componentes principales 
+
+Declarar un contador que acumule de la suma de números inválidos. 
+
+Declararemos una función que cuente repeticiones “repeticiones (num)”: 
+
+Convierte el número a cadena. 
+
+Comprueba si está formado por repeticiones de un patrón. 
+
+Devuelve true si es inválido, false si no. 
+
+ Declararemos una función encarda de buscar los numero inválidos "busca_invalidos(ini, fin):  
+
+Recorre todos los números entre ini y fin. 
+
+Llama a repeticiones para cada número. 
+
+Si es inválido, lo suma a cont_inv. 
+
+Imprime la suma total. 
