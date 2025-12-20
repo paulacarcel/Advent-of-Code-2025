@@ -3,15 +3,15 @@
 
 En la segunda parte de este día se plantea que, tras encontrar un Splitter ('^'), se pueden tomar a partir de esta posición dos líneas temporales (izquierda o derecha). Así pues, la finalidad es contar el número "timelines" (caminos distintos) que salen del mapa por los laterales o por la parte inferior.
 
-## 🎯Justificación de la elección:
+## Justificación de la elección:
 
 Hemos elegido este problema porque permite utilizar grafos de una forma muy interesante, combinándolos con programación dinámica, generando así "grafos dirigidos". Esto nos permite transformar una simulación compleja de múltiples bifurcaciones en un problema de conteo de caminos.
 
 ---
 
-## 🧠 Técnicas y estructuras de datos utilizadas
+##  Técnicas y estructuras de datos utilizadas
 
-### ✔ **1. Grafo dirigido acíclico (conocido como DAG) **
+###  **1. Grafo dirigido acíclico (conocido como DAG) **
 No se construye un grafo de manera explícita, pero sí siguiendo su estructura básica:
 - Cada celda `(r,c)` es un nodo.
 - Desde cada nodo solo se puede ir a la fila siguiente (`r+1`).
@@ -19,21 +19,21 @@ No se construye un grafo de manera explícita, pero sí siguiendo su estructura 
   - Si el carácter es `'^'` → dos aristas (`c-1` y `c+1`).
   - Si no es `'^'` → una arista recta (`c`).
 
-### ✔ **2. Programación Dinámica por capas**
+###  **2. Programación Dinámica por capas**
 Se usan dos arrays:
 - `ways[c]` → nº de caminos que llegan a la columna `c` en la fila actual.
 - `next_ways[c]` → nº de caminos que llegarán a la fila siguiente.
 
 Esta separación evita recomputaciones y nos permite procesar el grafo fila a fila.
 
-### ✔ **3. Arrays estáticos**
+###  **3. Arrays estáticos**
 Para eficiencia y sobre todo simplicidad, se usa:
 - `string mapa[MAXR]` para almacenar el mapa.
 - Arrays de tamaño fijo para DP (`ways` y `next_ways`).
 
 ---
 
-## 🛠️ Explicación de la solución paso a paso MODIFICAR!!
+##  Explicación de la solución paso a paso MODIFICAR!!
 
 1. **Lectura del mapa** desde `input.txt`. Cada línea se interpreta como una fila.
 2. **Búsqueda de la posición 'S'**, el punto de inicio del haz.  
@@ -51,9 +51,9 @@ Para eficiencia y sobre todo simplicidad, se usa:
 
 ---
 
-## 🔍 Alternativas probadas o descartadas
+##  Alternativas probadas o descartadas
 
-### ❌ **Construir el grafo explícitamente**
+###  **Construir el grafo explícitamente**
 A pesar de que en un primer momento se pudo plantear la idea de implementar un grafo explícito (sin uso de memoria), la idea fue reconsiderada pues:
 - Aumenta memoria innecesariamente.
 - El grafo es muy regular (transiciones siempre a fila siguiente).
@@ -61,7 +61,7 @@ A pesar de que en un primer momento se pudo plantear la idea de implementar un g
   
 ---
 
-## 📚 Valoración personal y aprendizaje
+##  Valoración personal y aprendizaje
 
 Este problema nos ha permitido:
 
@@ -77,7 +77,7 @@ Ha sido especialmente útil para reforzar:
 
 ---
 
-## ▶️ Cómo compilar## ▶️ Cómo compilar y ejecutar
+##  Cómo compilar y ejecutar ## 
 
 ### **Compilar**
 Desde la terminal de Ubuntu:
