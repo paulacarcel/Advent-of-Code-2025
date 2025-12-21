@@ -37,7 +37,7 @@ Para eficiencia y sobre todo buscando la mayor simplicidad, se usa:
 
 ---
 
-##  Explicación de la solución paso a paso MODIFICAR!!
+##  Explicación de la solución paso a paso 
 
 1. **Lectura del mapa** desde `input.txt`.
    - Cada línea se interpreta como una fila, guardándose en la variable R.
