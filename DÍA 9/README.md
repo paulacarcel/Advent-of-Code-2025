@@ -57,7 +57,7 @@ Finalmente, **actualizar el área máxima** cuando el rectángulo pasa todas las
 
 ---
 
-**Funciones principales **
+Funciones principales:
 - `leer_puntos`, `construir_aristas`
 - `punto_dentro_o_borde` 
 - `tiene_cruce_interior` 
