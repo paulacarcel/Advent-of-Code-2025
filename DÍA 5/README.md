@@ -1,6 +1,8 @@
 # Advent of Code 2025 - Día 5
 
-## 1. Justificación y Elección del Problema
+Hecho por Ángela Sal González
+
+## Justificación de la elección del problema y técnicas utilizadas
 
 Se ha seleccionado el reto del día 5 debido a su idoneidad para aplicar estructuras de datos dinámicas, específicamente estructuras de **Árboles**. El problema plantea la gestión de un conjunto masivo de rangos numéricos y la validación de la frescura del inventario, un escenario donde las estructuras estáticas o lineales resultan ineficientes. Anteriormente, los problemas planteados se podían resolver mediante fuerza bruta y su coste no hubiera variado significativamente; este problema es perfecto para implementar un **Árbol Binario de Búsqueda**.
 
@@ -8,7 +10,9 @@ Mientras que un vector convencional ofrece operaciones de búsqueda con coste li
 
 En conclusión, mientras que otros problemas del Advent of Code se pueden resolver eficientemente con Tablas Hash o Matrices, el día 5 presenta una combinación de rangos continuos y valores masivos que inutiliza esas estructuras. Es el único problema de la primera semana que exige una organización jerárquica de los datos (**divide y vencerás**) para ser resuelto en un tiempo razonable, lo que lo convierte en el ejemplo perfecto para implementar un Árbol Binario.
 
-## 2. Descripción Técnica
+---
+
+## Explicación de la solución
 
 Para la resolución se ha diseñado la clase `ArbolDeIntervalos`, implementando manualmente la estructura de nodos y punteros según el modelo de referencia para árboles binarios.
 
@@ -26,7 +30,9 @@ La lógica de consulta se asemeja a la de un Árbol Binario de Búsqueda. Para v
 
 Esto permite descartar mitades completas del árbol en cada paso, acercando la eficiencia a `O(log n)`.
 
-### Dificultades Encontradas y Soluciones
+---
+
+### Dificultades encontradas y soluciones
 
 * **Gestión de intervalos solapados**
     * **Problema:** En un Árbol Binario de Búsqueda estándar, un valor es menor o mayor que el nodo, pero nunca ambas cosas. Sin embargo, al trabajar con intervalos, surgía la duda de qué hacer con un rango (ej: 10-20) si el centro del nodo era 15. El intervalo cruzaba el pivote y no podía enviarse ni totalmente a la izquierda ni a la derecha.
@@ -35,18 +41,22 @@ Esto permite descartar mitades completas del árbol en cada paso, acercando la e
 * **Fugas de memoria**
     * **Problema:** Al trabajar con punteros y memoria dinámica (`new`), el programa funcionaba correctamente pero no liberaba la memoria RAM al finalizar.
     * **Solución:** Se implementó un destructor en la clase `ArbolDeIntervalos`. Para borrar correctamente, se tuvo que aplicar un recorrido en **post-orden** (primero se eliminan los hijos izquierdo y derecho, y finalmente el propio nodo). Esto asegura que no se pierdan las referencias a los subárboles antes de poder borrarlos.
+ 
+  ---
 
-## 3. Análisis de Alternativas
+## Análisis de Alternativas
 
 Durante el diseño de la solución se descartaron las siguientes técnicas de resolución:
 
 * **Vectores / Listas Enlazadas (Fuerza Bruta):**
-    Las estructuras lineales implican recorridos completos para la búsqueda, con un coste computacional de `O(n)` o incluso `O(n^2)` si no están ordenadas. Con la entrada masiva de datos del problema, el tiempo de ejecución resultaba inviable.
+    Las estructuras lineales implican recorridos completos para la búsqueda, con un coste computacional de `O(n)` o incluso `O(n^2)` si no están ordenadas. Con la entrada masiva de datos del problema, el tiempo de ejcución resultaba inviable.
 
 * **Tablas Hash (Arrays estáticos):**
     Aunque ofrecen acceso cercano a `O(1)`, requieren reservar espacio contiguo en memoria. Dado que los IDs son del tipo `long long`, una estructura estática sobredimensionada excedería la memoria RAM disponible.
 
-## 4. Valoración Personal
+  ---
+
+## Valoración personal y aprendizaje
 
 La resolución de este problema ha permitido consolidar los conceptos teóricos sobre árboles.
 
@@ -58,7 +68,9 @@ Además, debido a los problemas surgidos durante el desarrollo, la resolución d
 * Resolver el problema de los intervalos solapados implicó adaptar la recursividad estándar. No siempre se debe descender hasta las hojas: los intervalos solapados deben detenerse en el nodo intermedio. Además, se ha reforzado la importancia de definir bien el caso base para evitar errores de memoria o bucles infinitos al dividir los datos.
 * Los errores de desbordamiento han servido para recordar que se debe asegurar que los contenedores de datos (`long long` / `int`) sean adecuados para la magnitud del problema.
 
-## 5. Compilación
+ ---
+
+## Cómo compilar y ejecutar
 
 Asegúrate de tener el archivo `input.txt` en la misma carpeta.
 
