@@ -32,7 +32,7 @@ Esto permite descartar mitades completas del árbol en cada paso, acercando la e
 
 ---
 
-### Dificultades encontradas y soluciones
+## Dificultades encontradas y soluciones
 
 * **Gestión de intervalos solapados**
     * **Problema:** En un Árbol Binario de Búsqueda estándar, un valor es menor o mayor que el nodo, pero nunca ambas cosas. Sin embargo, al trabajar con intervalos, surgía la duda de qué hacer con un rango (ej: 10-20) si el centro del nodo era 15. El intervalo cruzaba el pivote y no podía enviarse ni totalmente a la izquierda ni a la derecha.
