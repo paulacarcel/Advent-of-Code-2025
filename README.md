@@ -1,5 +1,6 @@
 # Advent of Code 2025 
 ---
+![Logo](https://chasingdings.com/wp-content/uploads/2021/12/AoC_banner.png)
 
 ## Días elegidos y técnicas utilizadas:
 - DÍA 5 -> Árboles.
