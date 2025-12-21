@@ -1,5 +1,5 @@
 
-# DÍA 7, PARTE 2
+# ADVENT OF CODE 2025 - DÍA 7, PARTE 2
 
 En la segunda parte de este día se plantea que, tras encontrar un Splitter ('^'), se pueden tomar a partir de esta posición dos líneas temporales (izquierda o derecha). Así pues, la finalidad es contar el número "timelines" (caminos distintos) que salen del mapa por los laterales o por la parte inferior.
 
@@ -19,14 +19,14 @@ No se construye un grafo de manera explícita, pero sí siguiendo su estructura 
   - Si el carácter es `'^'` → dos aristas (`c-1` y `c+1`).
   - Si no es `'^'` → una arista recta (`c`).
 
-###  2. Programación Dinámica por capas**
+###  2. Programación Dinámica por capas
 Se usan dos arrays:
 - `ways[c]` → nº de caminos que llegan a la columna `c` en la fila actual.
 - `next_ways[c]` → nº de caminos que llegarán a la fila siguiente.
 
 Esta separación evita recomputaciones y nos permite procesar el grafo fila a fila.
 
-### 3. Arrays estáticos**
+### 3. Arrays estáticos
 Para eficiencia y sobre todo simplicidad, se usa:
 - `string mapa[MAXR]` para almacenar el mapa.
 - Arrays de tamaño fijo para DP (`ways` y `next_ways`).
