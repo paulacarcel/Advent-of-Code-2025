@@ -1,11 +1,15 @@
 
-# ADVENT OF CODE 2025 - DÍA 7, PARTE 2
+# Advent of Code 2025 - Día 7
 
-En la segunda parte de este día se plantea que, tras encontrar un Splitter ('^'), se pueden tomar a partir de esta posición dos líneas temporales (izquierda o derecha). Así pues, la finalidad es contar el número "timelines" (caminos distintos) que salen del mapa por los laterales o por la parte inferior.
+Hecho por Paula Cárcel Vercher y Sara Beses Martínez.
+
+---
+
+En la segunda parte de este día se plantea que, tras encontrar un Splitter ('^'), se pueden tomar a partir de esta posición dos líneas temporales (izquierda o derecha). Así pues, la finalidad de este problema es contar el número "timelines" (caminos distintos) que salen del mapa por los laterales o por la parte inferior.
 
 ## Justificación de la elección:
 
-Hemos elegido este problema porque permite utilizar grafos de una forma muy interesante, combinándolos con programación dinámica, generando así "grafos dirigidos". Esto nos permite transformar una simulación compleja de múltiples bifurcaciones en un problema de conteo de caminos.
+Se ha elegido este problema porque permite utilizar grafos de una forma muy interesante, combinándolos con programación dinámica, generando así "grafos dirigidos". Esto nos permite transformar una simulación compleja de múltiples bifurcaciones en un problema de conteo de caminos.
 
 ---
 
@@ -21,33 +25,47 @@ No se construye un grafo de manera explícita, pero sí siguiendo su estructura 
 
 ###  2. Programación Dinámica por capas
 Se usan dos arrays:
-- `ways[c]` → nº de caminos que llegan a la columna `c` en la fila actual.
-- `next_ways[c]` → nº de caminos que llegarán a la fila siguiente.
+- `ways[c]` → número de caminos que llegan a la columna `c` en la fila actual.
+- `next_ways[c]` → número de caminos que llegarán a la fila siguiente.
 
 Esta separación evita recomputaciones y nos permite procesar el grafo fila a fila.
 
 ### 3. Arrays estáticos
-Para eficiencia y sobre todo simplicidad, se usa:
+Para eficiencia y sobre todo buscando la mayor simplicidad, se usa:
 - `string mapa[MAXR]` para almacenar el mapa.
-- Arrays de tamaño fijo para DP (`ways` y `next_ways`).
+- Arrays de tamaño fijo con relación a la memoria (`ways` y `next_ways`).
 
 ---
 
 ##  Explicación de la solución paso a paso MODIFICAR!!
 
-1. **Lectura del mapa** desde `input.txt`. Cada línea se interpreta como una fila.
-2. **Búsqueda de la posición 'S'**, el punto de inicio del haz.  
-   - Todo el flujo parte desde la columna `sc` justo debajo de `S`.
-3. **Inicializamos la DP**:
-   - `ways[sc] = 1` (tenemos un camino inicial).
-4. **Procesamos el mapa fila a fila**:
-   - Si `mapa[r][c] == '^'` → el camino se **bifurca**:
-     - Va a `c-1` y a `c+1`.
-     - Si alguna salida está fuera del mapa → se suma a `cronog`.
-   - Si no hay `'^'` → el camino **sigue recto** (`c`).
-5. **Actualizamos los arrays** (`ways = next_ways`) y seguimos a la siguiente fila.
-6. **Al llegar al final del mapa**, cualquier camino que quede se considera como “salido por abajo” → se suma a `cronog`.
-7. **El resultado final** es el número total de timelines que han salido del mapa.
+1. **Lectura del mapa** desde `input.txt`.
+   - Cada línea se interpreta como una fila, guardándose en la variable R.
+   - Se verifica la existencia de filas, si no las hay no habrá caminos.
+   - Se obtiene también el número de columnas, que se guradará en la variable C.
+
+3. **Búsqueda de la posición 'S'**, el punto de inicio del haz.  
+   - Todo el flujo parte desde (`sc`,`sr`), (Sfila, Scolumna), posición de S.
+   - Se verifica que todas las filas tengan el mismo ancho, para evitar errores.
+   - Mediante un for se busca el carácter S, guardando su posición en las variables mencionadas.
+   - Si no se encuentra, se termina con un error.
+     
+4. **Inicialización la DP**:
+   - El uso de programación dinámica servirá para contar los caminos que salen del mapa.
+   - `ways[c]` será el número de caminos que llegan a la columna c (índice de columna) en la fila actual.
+   - `next_ways[c]` será el número de caminos que llegarán posteriormente a la columna c, desde el punto actual.
+     
+5. **Procesamiento del mapa fila a fila**:
+   - Si `mapa[r][c] == '^'` → el camino se **bifurca**, esto es imprescindible:
+     - Va a `c-1` (izquierda) y a `c+1` (derecha).
+     - Si alguna salida está fuera del mapa → se suma a la variable `cronog`.
+   - Si no hay `'^'` → el camino **sigue recto** (`c`), hasta que encuentre algún haz.
+     
+6. **Actualización de los arrays** (`ways = next_ways`) siguiendo a la siguiente fila, para continuar con el conteo.
+   
+8. **Al llegar al final del mapa**, cualquier camino que quede se considera como “salido por abajo” → se suma a la variable `cronog`.
+   
+10. **El resultado final** es el número total de timelines que han salido del mapa.
 
 ---
 
@@ -56,24 +74,14 @@ Para eficiencia y sobre todo simplicidad, se usa:
 ###  Construir el grafo explícitamente
 A pesar de que en un primer momento se pudo plantear la idea de implementar un grafo explícito (sin uso de memoria), la idea fue reconsiderada pues:
 - Aumenta memoria innecesariamente.
-- El grafo es muy regular (transiciones siempre a fila siguiente).
+- El grafo es muy regular (transiciones siempre a fila siguiente), facilitando el uso de memoria.
 - El enfoque por capas es más eficiente y limpio.
   
 ---
 
 ##  Valoración personal y aprendizaje
 
-Este problema nos ha permitido:
-
-- Entender cómo convertir una **rejilla en un grafo dirigido** sin necesidad de estructuras complejas.
-- Aplicar **programación dinámica** para conteo de caminos en un DAG.
-- Comprender la ventaja de separar **estado actual** y **estado siguiente**.
-- Trabajar con modelos que aparecen en problemas reales de propagación, caminos y simulaciones.
-
-Ha sido especialmente útil para reforzar:
-- El pensamiento por capas.
-- La optimización del espacio.
-- El razonamiento sobre flujos y bifurcaciones.
+Este problema nos ha ayudado a reforzar los conceptos vistos en clase, como el uso de grafos y de memoria. Al combinar estas dos ideas, hemos podido implementar un grafo dirigido y aplicar programación dinámica para contar caminos. Además, hemos podido comprobar la utilidad práctica de separar correctamente el estado actual del estado siguiente, lo que facilita la resolución del problema. En general, esta experiencia nos ha permitido entender que, usando bien las estructuras y técnicas aprendidas, es posible reducir considerablemente la complejidad de los problemas.
 
 ---
 
@@ -83,6 +91,8 @@ Ha sido especialmente útil para reforzar:
 Desde la terminal de Ubuntu:
 g++ Dia7_P2.cpp -o Dia7P2
 ./Dia7P2
+
+Debemos tener en cuenta que el archivo proporcionado "input.txt" debe encontrarse en el mismo directorio que el código.
 
 
 
