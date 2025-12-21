@@ -5,7 +5,7 @@
 ## Días elegidos y técnicas utilizadas:
 - DÍA 5 -> Árboles.
 - DÍA 7 -> Grafos y programación dinámica.
-- DÍA 5 -> Tabla Hash.
+- DÍA 9 -> Tabla Hash.
 
 ---
 
@@ -15,6 +15,6 @@
 - Mar Real Osca.
 - Ángela Sal González.
 
-Alumnas de 2º de GIIROB, para la asignatura de Programación Avanzada,
+Alumnas de 2º de GIIROB, para la asignatura de Programación Avanzada.
 
 ---
