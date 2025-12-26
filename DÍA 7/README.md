@@ -10,6 +10,7 @@ En la segunda parte de este día se plantea que, tras encontrar un Splitter ('^'
 ## Justificación de la elección:
 
 Se ha elegido este problema porque permite utilizar grafos de una forma muy interesante, combinándolos con programación dinámica, generando así "grafos dirigidos". Esto nos permite transformar una simulación compleja de múltiples bifurcaciones en un problema de conteo de caminos.
+Además, su coste computacional es O(R·C), donde R es el número de filas y C el número de columnas, ya que cada celda se procesa exactamente una vez. El consumo de memoria es O(R·C) para almacenar el mapa y O(C) para los vectores de DP, lo cual es eficiente y adecuado para mapas grandes. Esto la convierte en una solución robusta, clara y óptima en tiempo y memoria, perfecta para este caso.
 
 ---
 
